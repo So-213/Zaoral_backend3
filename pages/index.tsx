@@ -8,6 +8,8 @@ interface HomePageProps {
   version: string
 }
 
+
+
 export default function HomePage({ message, timestamp, version }: HomePageProps) {
   return (
     <div style={{ 
