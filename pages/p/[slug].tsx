@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { prisma } from '../../lib/prisma'
 
 
@@ -36,7 +37,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           alignItems: 'center'
         }}>
           <h1 style={{ color: '#e74c3c' }}>{error}</h1>
-          <a href="/" style={{ color: '#0070f3', textDecoration: 'none' }}>Go Home</a>
+          <Link href="/" style={{ color: '#0070f3', textDecoration: 'none' }}>Go Home</Link>
         </div>
       </>
     )
@@ -60,7 +61,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         }}>
           <h1 style={{ color: '#e74c3c' }}>Project Not Found</h1>
           <p>The requested project does not exist.</p>
-          <a href="/" style={{ color: '#0070f3', textDecoration: 'none' }}>Go Home</a>
+          <Link href="/" style={{ color: '#0070f3', textDecoration: 'none' }}>Go Home</Link>
         </div>
       </>
     )
