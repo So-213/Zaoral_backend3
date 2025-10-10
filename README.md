@@ -1,31 +1,28 @@
-# Zaoral Backend2
+# Zaoral Backend3
 
-Zaoralアプリケーションのバックエンド（簡易Webサーバー）です. 
+Zaoralアプリケーションの簡易Webサーバー側です. 
+EC2が使えなくなったため、vercelホスティング仕様にしました。
 
 
 ## 初版作成
 
-未完成
+2025.10
 
 
 ## 作成期間
 
-2ヶ月くらい？
+1日（"Zaoral Backend2" をNext.js仕様にしたのみ）
 
 
 ## 機能
 
-- **期限チェック**: プロジェクトの有効期限チェック
-- **動的ページ表示**: プロジェクトのスラッグに基づく動的ページ生成
-- **メッセージ表示**: プロジェクトに紐づくメッセージの表示
-※ プロジェクト自体はSupabaseDBで管理
+Zaoral Backend2 と同じ
 
 
 ## 技術スタック
 
-- **Node.js** - サーバーサイドランタイム
-- **Express.js** - Webフレームワーク
-- **Prisma** - ORM（Object-Relational Mapping）
-- **PostgreSQL** - データベース
+- **Next.js** 
+- **Prisma** 
+- **PostgreSQL** 
 
 
