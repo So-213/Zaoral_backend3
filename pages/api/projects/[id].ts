@@ -12,6 +12,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     try {
+      // Prismaクライアントが正しく初期化されているかチェック
+      if (!prisma || typeof prisma.project === 'undefined') {
+        return res.status(503).json({
+          error: 'Database not configured',
+          message: 'Please configure DATABASE_URL environment variable'
+        })
+      }
+
       const project = await prisma.project.findUnique({
         where: { id },
         include: {
@@ -33,7 +41,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     } catch (error) {
       console.error('Database error:', error)
       res.status(500).json({
-        error: 'Internal server error'
+        error: 'Internal server error',
+        message: 'Database connection failed'
       })
     }
   } else {

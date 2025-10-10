@@ -111,6 +111,16 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
   const { slug } = params as { slug: string }
 
   try {
+    // Prismaクライアントが正しく初期化されているかチェック
+    if (!prisma || typeof prisma.project === 'undefined') {
+      return {
+        props: {
+          project: null,
+          error: 'Database not configured'
+        }
+      }
+    }
+
     const project = await prisma.project.findUnique({
       where: { slug },
       include: {
