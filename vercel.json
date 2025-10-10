@@ -11,9 +11,5 @@
     "pages/p/**/*.tsx": {
       "maxDuration": 30
     }
-  },
-  "env": {
-    "DATABASE_URL": "@database_url",
-    "DIRECT_URL": "@direct_url"
   }
 }
