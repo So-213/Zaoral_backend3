@@ -68,6 +68,8 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
   }
 
   const messageToDisplay = project.projectMessage?.message || ''
+  // メッセージの最初に30文字の空白と改行を追加（リンクプレビュー対策）
+  const messageWithPadding = '                              \n' + messageToDisplay + '\n\n'
 
   return (
     <>
@@ -110,7 +112,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           />
           <div style={{
             position: 'absolute',
-            top: '10%',
+            top: '25%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             fontSize: '1.5em',
@@ -122,9 +124,10 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
             padding: '20px',
             borderRadius: '10px',
             border: '2px solid #888',
-            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            whiteSpace: 'pre-wrap'
           }}>
-            {messageToDisplay}
+            {messageWithPadding}
             <div style={{
               position: 'absolute',
               bottom: '-15px',
