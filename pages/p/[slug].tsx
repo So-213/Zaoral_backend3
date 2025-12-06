@@ -112,7 +112,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           />
           <div style={{
             position: 'absolute',
-            top: '25%',
+            top: '15%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             fontSize: '1.5em',
