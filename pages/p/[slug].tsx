@@ -75,30 +75,53 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         <title>webPageForYou</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+
+
+
+
+
       <div style={{
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         margin: 0,
         padding: 0,
-        background: 'linear-gradient(135deg,rgb(235, 148, 209) 0%,rgb(236, 150, 193) 100%)',
+        background: 'linear-gradient(135deg,rgb(238, 225, 234) 0%,rgb(245, 241, 243) 100%)',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        position: 'relative'
       }}>
         <div style={{
-          background: 'white',
-          borderRadius: '20px',
-          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
-          padding: '40px',
+          position: 'relative',
           maxWidth: '600px',
           width: '90%',
           textAlign: 'center'
         }}>
+          <img
+            src="/p/snp.jpg"
+            alt="Snoopy"
+            style={{
+              width: '100%',
+              height: 'auto',
+              borderRadius: '20px',
+              boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+              display: 'block'
+            }}
+          />
           <div style={{
+            position: 'absolute',
+            top: '20%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
             fontSize: '1.5em',
             color: '#333',
-            marginBottom: '20px',
-            lineHeight: '1.4'
+            lineHeight: '1.4',
+            width: '80%',
+            textAlign: 'center',
+            background: 'rgba(255, 255, 255, 0.9)',
+            padding: '20px',
+            borderRadius: '10px',
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
           }}>
             {messageToDisplay}
           </div>
