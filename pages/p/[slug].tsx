@@ -68,8 +68,8 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
   }
 
   const messageToDisplay = project.projectMessage?.message || ''
-  // メッセージの最初に30文字の空白と改行を追加（リンクプレビュー対策）
-  const messageWithPadding = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n' + messageToDisplay + '\n\n'
+  // メッセージの最初に30文字のハイフンと改行を追加（リンクプレビュー対策）
+  const paddingText: string = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n'
 
   return (
     <>
@@ -99,6 +99,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           width: '90%',
           textAlign: 'center'
         }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/p/snp.jpg"
             alt="Snoopy"
