@@ -69,7 +69,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
 
   const messageToDisplay = project.projectMessage?.message || ''
   // メッセージの最初に30文字のハイフンと改行を追加（リンクプレビュー対策）
-  const paddingText: string = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n'
+  const paddingText: string = 'ーーーーーーーーー\nーーーーーーーーーーーーーー\nーーーーーーーーーーーー'
 
   return (
     <>
@@ -86,7 +86,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         margin: 0,
         padding: 0,
-        background: 'pink',
+        background: 'white',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -114,12 +114,11 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           {/* パディング部分（吹き出しから切り離し） */}
           <div style={{
             position: 'absolute',
-            top: '5%',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            fontSize: '1.5em',
+            bottom: '10px',
+            left: '10px',
+            fontSize: '0.6em',
             color: 'white',
-            textAlign: 'center',
+            textAlign: 'left',
             whiteSpace: 'pre-wrap'
           }}>
             {paddingText}
@@ -143,7 +142,6 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
             whiteSpace: 'pre-wrap'
           }}>
             {messageToDisplay}
-            {'\n\n'}
             <div style={{
               position: 'absolute',
               bottom: '-15px',
