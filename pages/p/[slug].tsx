@@ -126,7 +126,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           {/* 吹き出し */}
           <div style={{
             position: 'absolute',
-            top: '15%',
+            top: '10%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
             fontSize: '1.5em',
