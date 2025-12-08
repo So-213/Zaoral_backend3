@@ -111,6 +111,20 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
               display: 'block'
             }}
           />
+          {/* パディング部分（吹き出しから切り離し） */}
+          <div style={{
+            position: 'absolute',
+            top: '5%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            fontSize: '1.5em',
+            color: 'white',
+            textAlign: 'center',
+            whiteSpace: 'pre-wrap'
+          }}>
+            {paddingText}
+          </div>
+          {/* 吹き出し */}
           <div style={{
             position: 'absolute',
             top: '15%',
@@ -128,7 +142,6 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
             boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
             whiteSpace: 'pre-wrap'
           }}>
-            <span style={{ color: 'white' }}>{paddingText}</span>
             {messageToDisplay}
             {'\n\n'}
             <div style={{
