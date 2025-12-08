@@ -69,7 +69,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
 
   const messageToDisplay = project.projectMessage?.message || ''
   // メッセージの最初に30文字の空白と改行を追加（リンクプレビュー対策）
-  const messageWithPadding = '                              \n' + messageToDisplay + '\n\n'
+  const messageWithPadding = '..............................\n' + messageToDisplay + '\n\n'
 
   return (
     <>
@@ -86,7 +86,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         margin: 0,
         padding: 0,
-        background: 'white',
+        background: 'pink',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -120,7 +120,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
             lineHeight: '1.4',
             width: '80%',
             textAlign: 'center',
-            background: 'white',
+            background: 'green',
             padding: '20px',
             borderRadius: '10px',
             border: '2px solid #888',
