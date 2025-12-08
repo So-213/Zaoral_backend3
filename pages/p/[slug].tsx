@@ -68,8 +68,8 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
   }
 
   const messageToDisplay = project.projectMessage?.message || ''
-  // メッセージの最初に30文字の空白と改行を追加（リンクプレビュー対策）
-  const messageWithPadding = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n' + messageToDisplay + '\n\n'
+  // メッセージの最初に30文字のハイフンと改行を追加（リンクプレビュー対策）
+  const paddingText: string = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n'
 
   return (
     <>
@@ -86,7 +86,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         margin: 0,
         padding: 0,
-        background: 'white',
+        background: 'pink',
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
@@ -99,6 +99,7 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
           width: '90%',
           textAlign: 'center'
         }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/p/snp.jpg"
             alt="Snoopy"
@@ -127,7 +128,9 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
             boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
             whiteSpace: 'pre-wrap'
           }}>
-            {messageWithPadding}
+            <span style={{ color: 'white' }}>{paddingText}</span>
+            {messageToDisplay}
+            {'\n\n'}
             <div style={{
               position: 'absolute',
               bottom: '-15px',
