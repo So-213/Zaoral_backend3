@@ -68,8 +68,8 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
   }
 
   const messageToDisplay = project.projectMessage?.message || ''
-  // メッセージの最初に30文字のハイフンと改行を追加（リンクプレビュー対策）
-  const paddingText = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n'
+  // メッセージの最初に30文字の空白と改行を追加（リンクプレビュー対策）
+  const messageWithPadding = 'ーーーーーーーーーーーーーーーーーーーーーーーーーーーーーー\n' + messageToDisplay + '\n\n'
 
   return (
     <>
