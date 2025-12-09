@@ -19,7 +19,6 @@ export default function HomePage({ message, timestamp, version }: HomePageProps)
       maxWidth: '600px',
       margin: '0 auto'
     }}>
-
     </div>
   )
 }

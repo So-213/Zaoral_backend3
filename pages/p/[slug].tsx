@@ -1,4 +1,4 @@
-import { GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { prisma } from '../../lib/prisma'
@@ -78,10 +78,6 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-
-
-
-
       <div style={{
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
         margin: 0,
@@ -160,43 +156,56 @@ export default function ProjectPage({ project, error }: ProjectPageProps) {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+// 動的パスの生成（初回ビルド時は空配列、リクエスト時に生成）
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [],
+    fallback: 'blocking' // 初回アクセス時に生成し、その後キャッシュ
+  }
+}
+
+// ISR: 60秒間キャッシュ（必要に応じて調整可能）
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params as { slug: string }
 
   try {
-    // Prismaクライアントが正しく初期化されているかチェック
-    if (!prisma || typeof prisma.project === 'undefined') {
-      return {
-        props: {
-          project: null,
-          error: 'Database not configured'
+    // 期限切れチェックをデータベースクエリで実行（パフォーマンス向上）
+    const now = new Date()
+    
+    const project = await prisma.project.findFirst({
+      where: {
+        slug,
+        expires_at: {
+          gt: now // 期限切れでないもののみ取得
         }
-      }
-    }
-
-    const project = await prisma.project.findUnique({
-      where: { slug },
-      include: {
-        projectMessage: true
+      },
+      select: {
+        id: true,
+        user_name: true,
+        slug: true,
+        created_at: true,
+        expires_at: true,
+        projectMessage: {
+          select: {
+            message: true
+          }
+        }
       }
     })
 
     if (!project) {
-      return {
-        props: {
-          project: null,
-          error: 'Project not found'
-        }
-      }
-    }
+      // プロジェクトが存在しないか、期限切れの場合
+      const exists = await prisma.project.findUnique({
+        where: { slug },
+        select: { id: true }
+      })
 
-    // 期限切れチェック
-    if (project.expires_at && new Date() > new Date(project.expires_at)) {
       return {
         props: {
           project: null,
-          error: 'Project has expired'
-        }
+          error: exists ? 'Project has expired' : 'Project not found'
+        },
+        revalidate: 60 // 60秒後に再検証
       }
     }
 
@@ -207,7 +216,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
           created_at: project.created_at.toISOString(),
           expires_at: project.expires_at.toISOString()
         }
-      }
+      },
+      revalidate: 60 // 60秒間キャッシュ（この期間中は同じレスポンスを返す）
     }
   } catch (error) {
     console.error('Database error:', error)
@@ -215,7 +225,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
       props: {
         project: null,
         error: 'Server error'
-      }
+      },
+      revalidate: 10 // エラー時は10秒後に再試行
     }
   }
 }
